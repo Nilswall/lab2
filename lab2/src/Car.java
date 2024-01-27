@@ -100,5 +100,9 @@ public abstract class Car implements Movable {
     public void setPos(Point2D point){
         this.point = point;
     }
+    public void updatePosition(Transport transport) {
+        Point2D transportPosition = transport.getpoint();
+        this.point = new Point2D.Double(transportPosition.getX(), transportPosition.getY());
+    }
 }
 
