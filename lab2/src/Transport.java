@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import static java.lang.Math.sqrt;
 
-public class Transport extends Truck{
+public class Transport extends Truck implements Loading{
     private Stack<Car> cargo;
     private int maxsize;
     public Transport() {
@@ -26,11 +26,13 @@ public class Transport extends Truck{
             throw new RuntimeException("Cant change angle while driving");
         }
     }
-    public double avståndsformeln(Point2D point1, Point2D point2){
+
+    public double avståndsFormeln(Point2D point1, Point2D point2){
         double dx = point2.getX() - point1.getX();
         double dy = point2.getY()- point1.getY();
         return sqrt(dx*dx+dy*dy);
-    }
+    } // TODO ta bort och ha endast i Loading??
+
     public void loadCargo(Car car) {
         if (getCurrentSpeed() != 0) {
             throw new RuntimeException("Cant load while driving");
@@ -38,7 +40,7 @@ public class Transport extends Truck{
         else if (this.cargo.size() == this.maxsize) {
             throw new RuntimeException("Transport full");
         }
-        else if (avståndsformeln(car.getpoint(), this.getpoint()) > 8) {
+        else if (avståndsFormeln(car.getpoint(), this.getpoint()) > 8) {
             throw new RuntimeException("Cargo not at transport");
 
         }
@@ -50,6 +52,7 @@ public class Transport extends Truck{
             car.setPos(this.getpoint());
         }
     }
+
     public void offLoadCargo(){
         if (getCurrentSpeed() != 0){
             throw new RuntimeException("Cant offload while driving");
