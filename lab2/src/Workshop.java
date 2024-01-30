@@ -9,7 +9,7 @@ public class Workshop implements Loading{
         this.point = point;
     }
 
-    private getPoint() {return this.point;} // Ärva från nåt, tsm med avståndsformeln?
+    public getPoint() {return this.point;} // Ärva från nåt, tsm med avståndsformeln?
 
     public void loadCargo(Car car) {
         if (this.cargo.size() >= this.maxsize) {
